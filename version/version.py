@@ -5,7 +5,7 @@ import platform
 Get the Python's version
 """
 
-print("Hello from Jenkins 😀\n")
+print("Hello #2 from Jenkins 😀\n")
 # check the Python version using the sys module
 print(f'sys module: {sys.version}')
 
