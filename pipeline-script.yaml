@@ -8,7 +8,7 @@ pipeline {
         spec:
           containers:
           - name: python3
-            namespace: "jenkins-ns"
+            namespace: "jenkins-nodes-ns"
             image: python:3.11.4-slim-bullseye
             command:
             - cat
@@ -17,7 +17,7 @@ pipeline {
     }
   }
   stages {
-    stage('Run maven') {
+    stage('Run Python3') {
       steps {
         container('python3') {
           sh 'python3 --version'
