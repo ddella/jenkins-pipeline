@@ -30,11 +30,11 @@ pipeline {
                         spec:
                         containers:
                         - name: python3
-                            image: python:3.11.4-slim-bullseye
-                            command:
-                            - cat
-                            tty: true
-                    '''
+                          image: python:3.11.4-slim-bullseye
+                          command:
+                          - cat
+                          tty: true
+                  '''
                 }
             }
             steps {
