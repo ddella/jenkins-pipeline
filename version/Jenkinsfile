@@ -43,6 +43,8 @@ pipeline {
                   sh 'python3 --version'
                   sh 'cat /etc/os-release'
                   sh 'ls -la'
+                  sh 'pwd'
+                  sh 'uname -rv'
                   sh 'python3 version/version.py'
                 }
             }
