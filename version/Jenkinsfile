@@ -1,63 +1,63 @@
 pipeline {
-    agent {
+  agent {
+    kubernetes {
+      cloud 'k8s-1-jenkins-ns'
+    }
+  }
+  stages {
+    stage('Static Analysis') {
+      steps {
+        echo '>>Run the static analysis to the code' 
+      }
+    }
+    stage('Compile') {
+      steps {
+        echo '>>Compile the source code' 
+      }
+    }
+    stage('Security Check') {
+      steps {
+        echo '>>Run the security check against the application' 
+      }
+    }
+    stage('Run Unit Tests') {
+      agent {
         kubernetes {
-            cloud 'k8s-1-jenkins-ns'
+          cloud 'k8s-1-jenkins-ns'
+          yaml '''
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: python3
+                image: python:3.11.4-slim-bullseye
+                command:
+                - cat
+                tty: true
+          '''
         }
+      }
+      steps {
+        container('python3') {
+          sh 'echo ">>Run unit tests from the source code"'
+          sh 'python3 --version'
+          sh 'cat /etc/os-release'
+          sh 'ls -la'
+          sh 'pwd'
+          sh 'uname -rv'
+          sh 'python3 version/version.py'
+        }
+      }
     }
-    stages {
-        stage('Static Analysis') {
-            steps {
-                echo '>>Run the static analysis to the code' 
-            }
-        }
-        stage('Compile') {
-            steps {
-                echo '>>Compile the source code' 
-            }
-        }
-        stage('Security Check') {
-            steps {
-                echo '>>Run the security check against the application' 
-            }
-        }
-        stage('Run Unit Tests') {
-            agent {
-                kubernetes {
-                    cloud 'k8s-1-jenkins-ns'
-                    yaml '''
-                      apiVersion: v1
-                      kind: Pod
-                      spec:
-                        containers:
-                        - name: python3
-                          image: python:3.11.4-slim-bullseye
-                          command:
-                          - cat
-                          tty: true
-                  '''
-                }
-            }
-            steps {
-                container('python3') {
-                  sh 'echo ">>Run unit tests from the source code"'
-                  sh 'python3 --version'
-                  sh 'cat /etc/os-release'
-                  sh 'ls -la'
-                  sh 'pwd'
-                  sh 'uname -rv'
-                  sh 'python3 version/version.py'
-                }
-            }
-        }
-        stage('Run Integration Tests') {
-            steps {
-                echo '>>Run only crucial integration tests from the source code **jenkins-ns**' 
-            }
-        }
-        stage('Publish Artifacts') {
-            steps {
-                echo '>>Save the assemblies generated from the compilation' 
-            }
-        }
+    stage('Run Integration Tests') {
+      steps {
+        echo '>>Run only crucial integration tests from the source code **jenkins-ns**' 
+      }
     }
+    stage('Publish Artifacts') {
+      steps {
+        echo '>>Save the assemblies generated from the compilation' 
+      }
+    }
+  }
 }
