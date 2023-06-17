@@ -3,6 +3,7 @@ pipeline {
     kubernetes {
       cloud 'k8s-1-jenkins-nodes-ns'
     }
+  }
     stages {
         stage('Static Analysis') {
             steps {
