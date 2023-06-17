@@ -31,8 +31,13 @@ pipeline {
             }
         }
         stage('Run Integration Tests') {
+            agent {
+                kubernetes {
+                    cloud 'k8s-1-jenkins-ns'
+                }
+            }
             steps {
-                echo '>>Run only crucial integration tests from the source code' 
+                echo '>>Run only crucial integration tests from the source code **jenkins-ns**' 
             }
         }
         stage('Publish Artifacts') {
