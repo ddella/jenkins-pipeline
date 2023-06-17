@@ -17,7 +17,6 @@ pipeline {
     }
     stage('Security Check') {
       steps {
-        // Validate kubectl
         sh "cat /etc/os-release"
         echo '>>Run the security check against the application' 
       }
