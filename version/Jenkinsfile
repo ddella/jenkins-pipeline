@@ -2,17 +2,6 @@ pipeline {
     agent {
         kubernetes {
             cloud 'k8s-1-jenkins-ns'
-            // yaml '''
-            //   apiVersion: v1
-            //   kind: Pod
-            //   spec:
-            //     containers:
-            //     - name: python3
-            //       image: python:3.11.4-slim-bullseye
-            //       command:
-            //       - cat
-            //       tty: true
-            // '''
         }
     }
     stages {
@@ -50,13 +39,14 @@ pipeline {
             }
             steps {
                 container('python3') {
-                sh 'python3 --version'
-                sh 'cat /etc/os-release'
-                sh 'ls -la'
+                  sh 'echo ">>Run unit tests from the source code"'
+                  sh 'python3 --version'
+                  sh 'cat /etc/os-release'
+                  sh 'ls -la'
                 }
             }
             // steps {
-            //     echo '>>Run unit tests from the source code' 
+            //     echo '>>Run unit tests from the source code'
             // }
         }
         stage('Run Integration Tests') {
