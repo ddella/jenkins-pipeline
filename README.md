@@ -8,7 +8,6 @@ This is a repo for an integration with Jenkins.
 ## Advanced Options
 ![Advanced Options](images/git_advanced_options.jpg)
 
-
 # License
 This project is licensed under the [MIT license](LICENSE).
 
