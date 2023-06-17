@@ -5,6 +5,11 @@ pipeline {
     }
   }
     stages {
+        agent {
+            kubernetes {
+                cloud 'k8s-1-jenkins-nodes-ns'
+            }
+          }
         stage('Static Analysis') {
             steps {
                 echo '>>Run the static analysis to the code' 
@@ -25,6 +30,11 @@ pipeline {
                 echo '>>Run unit tests from the source code' 
             }
         }
+        agent {
+            kubernetes {
+                cloud 'k8s-1-jenkins-ns'
+            }
+          }
         stage('Run Integration Tests') {
             steps {
                 echo '>>Run only crucial integration tests from the source code' 
