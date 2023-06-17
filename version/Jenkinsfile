@@ -8,10 +8,10 @@ pipeline {
                 spec:
                 containers:
                 - name: python3
-                  image: python:3.11.4-slim-bullseye
-                  command:
-                  - cat
-                  tty: true
+                    image: python:3.11.4-slim-bullseye
+                    command:
+                    - cat
+                    tty: true
             '''
         }
     }
@@ -32,6 +32,22 @@ pipeline {
             }
         }
         stage('Run Unit Tests') {
+            agent {
+                kubernetes {
+                    cloud 'k8s-1-jenkins-ns'
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        spec:
+                        containers:
+                        - name: python3
+                            image: python:3.11.4-slim-bullseye
+                            command:
+                            - cat
+                            tty: true
+                    '''
+                }
+            }
             steps {
                 container('python3') {
                 sh 'python3 --version'
