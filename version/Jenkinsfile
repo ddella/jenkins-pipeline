@@ -17,6 +17,8 @@ pipeline {
     }
     stage('Security Check') {
       steps {
+        // Validate kubectl
+        sh "kubectl cluster-info"
         echo '>>Run the security check against the application' 
       }
     }
