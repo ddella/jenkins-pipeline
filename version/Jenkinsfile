@@ -48,9 +48,6 @@ pipeline {
                   sh 'python3 version/version.py'
                 }
             }
-            // steps {
-            //     echo '>>Run unit tests from the source code'
-            // }
         }
         stage('Run Integration Tests') {
             steps {
