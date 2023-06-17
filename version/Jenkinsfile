@@ -36,6 +36,11 @@ pipeline {
                 command:
                 - cat
                 tty: true
+              - name: alpine
+                image: alpine:3.18.2
+                command:
+                - cat
+                tty: true
           '''
         }
       }
@@ -48,6 +53,12 @@ pipeline {
           sh 'pwd'
           sh 'uname -rv'
           sh 'python3 version/version.py'
+        }
+        container('alpine') {
+          sh 'cat /etc/os-release'
+          sh 'ls -la'
+          sh 'pwd'
+          sh 'uname -rv'
         }
       }
     }
