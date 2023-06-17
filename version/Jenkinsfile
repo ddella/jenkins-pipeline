@@ -1,5 +1,5 @@
 pipeline {
-    agent kubernetes
+    agent any
 //   agent {
 //     kubernetes {
 //       cloud 'k8s-1-jenkins-nodes-ns'
@@ -9,7 +9,7 @@ pipeline {
         stage('Static Analysis') {
             agent {
                 kubernetes {
-                    cloud 'k8s-1-jenkins-nodes-ns'
+                    cloud 'k8s-1-jenkins-ns'
                 }
             }
             steps {
@@ -17,16 +17,31 @@ pipeline {
             }
         }
         stage('Compile') {
+            agent {
+                kubernetes {
+                    cloud 'k8s-1-jenkins-nodes-ns'
+                }
+            }
             steps {
                 echo '>>Compile the source code' 
             }
         }
         stage('Security Check') {
+            agent {
+                kubernetes {
+                    cloud 'k8s-1-jenkins-ns'
+                }
+            }
             steps {
                 echo '>>Run the security check against the application' 
             }
         }
         stage('Run Unit Tests') {
+            agent {
+                kubernetes {
+                    cloud 'k8s-1-jenkins-nodes-ns'
+                }
+            }
             steps {
                 echo '>>Run unit tests from the source code' 
             }
@@ -42,6 +57,11 @@ pipeline {
             }
         }
         stage('Publish Artifacts') {
+            agent {
+                kubernetes {
+                    cloud 'k8s-1-jenkins-nodes-ns'
+                }
+            }
             steps {
                 echo '>>Save the assemblies generated from the compilation' 
             }

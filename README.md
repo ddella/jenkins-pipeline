@@ -6,7 +6,6 @@ This project is licensed under the [MIT license](LICENSE).
 
 # Reference
 
-https://plugins.jenkins.io/github/
-
-https://www.cprime.com/resources/blog/how-to-integrate-jenkins-github/
-
+[Jenkins GitHub plugin](https://plugins.jenkins.io/github/)
+[How to integrate Jenkins with GitHhub](https://www.cprime.com/resources/blog/how-to-integrate-jenkins-github/)
+[Nice and complete Jenkinsfile](https://github.com/eldada/jenkins-pipeline-kubernetes)
