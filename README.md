@@ -1,6 +1,14 @@
 # Jenkins
 This is a repo for an integration with Jenkins.
 
+# Configuration
+## General Options
+![General Options](images/git_general.jpg)
+
+## Advanced Options
+![Advanced Options](images/git_advanced_options.jpg)
+
+
 # License
 This project is licensed under the [MIT license](LICENSE).
 
@@ -13,3 +21,4 @@ This project is licensed under the [MIT license](LICENSE).
 [For the full 1 hour course watch out youtube from above](https://www.youtube.com/watch?v=6YZvp2GwT0A)  
 [Basic Hello World](https://github.com/chrismld/jenkins-pipeline-tutorial/)  
 [Create A CI/CD Pipeline With Kubernetes and Jenkins](https://www.weave.works/blog/create-a-cicd-pipeline-with-kubernetes-and-jenkins)  
+[How to Use Kubernetes Pods As Jenkins Agents](https://www.youtube.com/watch?v=ZXaorni-icg)  
