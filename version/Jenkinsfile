@@ -47,6 +47,7 @@ pipeline {
       steps {
         container('python3') {
           sh 'echo ">>Run unit tests from the source code"'
+          sh 'echo "Run Unit Tests" > test.txt'
           sh 'python3 --version'
           sh 'cat /etc/os-release'
           sh 'ls -la'
