@@ -6,12 +6,12 @@ pipeline {
               apiVersion: v1
               kind: Pod
               spec:
-              containers:
-              - name: python3
-                image: python:3.11.4-slim-bullseye
-                command:
-                - cat
-                tty: true
+                containers:
+                - name: python3
+                  image: python:3.11.4-slim-bullseye
+                  command:
+                  - cat
+                  tty: true
             '''
         }
     }
@@ -39,12 +39,12 @@ pipeline {
                       apiVersion: v1
                       kind: Pod
                       spec:
-                      containers:
-                      - name: python3
-                        image: python:3.11.4-slim-bullseye
-                        command:
-                        - cat
-                        tty: true
+                        containers:
+                        - name: python3
+                          image: python:3.11.4-slim-bullseye
+                          command:
+                          - cat
+                          tty: true
                   '''
                 }
             }
