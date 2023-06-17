@@ -1,0 +1,30 @@
+pipeline {
+  agent {
+    kubernetes {
+      cloud 'k8s-1-jenkins-nodes-ns'
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: python3
+            namespace: "jenkins-ns"
+            image: python:3.11.4-slim-bullseye
+            command:
+            - cat
+            tty: true
+        '''
+    }
+  }
+  stages {
+    stage('Run maven') {
+      steps {
+        container('python3') {
+          sh 'python3 --version'
+          sh 'cat /etc/os-release'
+          sh 'python3 version.py'
+        }
+      }
+    }
+  }
+}
