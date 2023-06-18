@@ -24,7 +24,7 @@ pipeline {
     stage('Run Unit Tests') {
       agent {
         kubernetes {
-          cloud 'k8s-1-jenkins-nodes-ns'
+          cloud 'k8s-1-jenkins-ns'
           yaml '''
             apiVersion: v1
             kind: Pod
